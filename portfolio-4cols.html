@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Material In - Responsive Cards</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: #ffff;
+   
+    color: #000;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .title {
+      font-size: 1.2rem;
+      font-weight: bold;
+     
+
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 10px 0;
+      background-image: linear-gradient(to right, #7ed56f, #28b485);
+    -webkit-background-clip: text;
+    color: transparent;
+    }
+
+    .desc {
+      color: #000;
+      margin-bottom: 10px;
+    }
+
+    .lists {
+      list-style: none;
+      padding: 0;
+    }
+
+    .list {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .list svg {
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+      background-image: linear-gradient(to right, #7ed56f, #28b485);
+    -webkit-background-clip: text;
+    color: transparent;
+    }
+
+    .action {
+      display: block;
+      width: 100%;
+      background-image: linear-gradient(to right, #7ed56f, #28b485);
+    
+      color: #ffff;
+      border: none;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+
+    .action:hover {
+      background-image: linear-gradient(to right, #7ed56f, #28b485);
+   
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Material In Data</h2>
+  <div class="container" id="cardContainer"></div>
+
+  <script>
+    const sheetId = "1j-VRk5eeMA_r-YyAle0gKY41zcYe2mwUFKrqf214_As";
+    const apiKey = "AIzaSyAIztg6QnxD9Z6nMBd8dM2vQDeXOncdks8";
+    const range = "Material in!A2:Z100";
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+
+    const fetchData = () => {
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const rows = data.values;
+           // Remove last three rows before displaying data
+           if (rows.length > 3) {
+            rows.splice(-3);
+          }
+
+          loadCardData(rows);
+      
+        })
+        .catch(error => console.error("Error:", error));
+    };
+
+    function loadCardData(materialData) {
+      const container = document.querySelector("#cardContainer");
+
+      materialData.forEach(row => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+          <div class="header">
+            <span class="title">${row[3]}</span>
+            <span class="price">${row[2]}</span>
+          </div>
+          <p class="desc">Date:<strong>${row[1]}</strong></p>
+          <ul class="lists">
+            <li class="list">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Weight: <strong>${row[4]}</strong></span>
+            </li>
+            <li class="list">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Price: <strong>Rs. ${row[5]}</strong></span>
+            </li>
+            <li class="list">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Purchase Amount: <strong>Rs. ${row[6]}</strong></span>
+            </li>
+          </ul>
+          <button type="button" class="action">View Details</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    fetchData();
+  </script>
+</body>
+
+</html>
