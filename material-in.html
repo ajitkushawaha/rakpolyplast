@@ -4,106 +4,132 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Details</title>
-  <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:300,400,600,700"
-    rel="stylesheet" />
+  <title>Material In - Responsive Cards</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <!-- css -->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:300,400,600,700" rel="stylesheet">
   <link href="css/bootstrap.css" rel="stylesheet" />
   <link href="css/bootstrap-responsive.css" rel="stylesheet" />
-  <link href="css/fancybox/jquery.fancybox.css" rel="stylesheet" />
+  <link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
   <link href="css/jcarousel.css" rel="stylesheet" />
   <link href="css/flexslider.css" rel="stylesheet" />
+  <link href="css/cslider.css" rel="stylesheet" />
   <link href="css/style.css" rel="stylesheet" />
   <!-- Theme skin -->
-  <link href="skins/default.css" rel="stylesheet" />
+  <link id="t-colors" href="skins/default.css" rel="stylesheet" />
+  <!-- boxed bg -->
+  <link id="bodybg" href="bodybg/bg1.css" rel="stylesheet" type="text/css" />
   <!-- Fav and touch icons -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
   <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
   <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
-  <link rel="shortcut icon" href="ico/favicon.png" />
+ 
+
+
   <style>
     body {
       font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
       margin: 0;
       padding: 0;
     }
 
+    h2 {
+      text-align: center;
+      margin-top: 20px;
+    }
+
     .container {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 15px;
-    }
-
-    .product-details {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 20px;
+      padding: 20px;
+      justify-content: center;
     }
 
-    .product-images {
-      flex: 1;
+    .card {
+      background-color: #ffff;
+   
+    color: #000;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
     }
 
-    .product-images img {
-      width: 100%;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      margin-bottom: 10px;
+    .card:hover {
+      transform: translateY(-5px);
     }
 
-    .product-images .thumbnails {
-      display: flex;
-      gap: 10px;
-    }
-
-    .product-images .thumbnails img {
-      width: 80px;
-      height: 80px;
-      cursor: pointer;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
-
-    .product-description {
-      flex: 2;
-    }
-
-    .product-description h2 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .product-description p {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-
-    .product-description .price {
-      font-size: 20px;
-      color: #4caf50;
-      margin-bottom: 20px;
-    }
-
-    .btn {
-      display: inline-block;
-      color: white;
-      padding: 10px 15px;
-      text-decoration: none;
-      border-radius: 5px;
+    .title {
+      font-size: 1.2rem;
       font-weight: bold;
-      transition: background-color 0.3s;
-      border: 1px solid #4caf50;
-      color: black;
-      margin-bottom: 1rem;
+     
 
     }
 
-    .btn:hover {
-      background-color: #4caf50;
+    .price {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 10px 0;
+      background-image: linear-gradient(to right, #7ed56f, #28b485);
+    -webkit-background-clip: text;
+    color: transparent;
+    }
+
+    .desc {
+      color: #000;
+      margin-bottom: 10px;
+    }
+
+    .lists {
+      list-style: none;
+      padding: 0;
+    }
+
+    .list {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .list svg {
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+      background-image: linear-gradient(to right, #7ed56f, #28b485);
+    -webkit-background-clip: text;
+    color: transparent;
+    }
+
+    .action {
+      display: block;
+      width: 100%;
+      background-image: linear-gradient(to right, #7ed56f, #28b485);
+    
+      color: #ffff;
+      border: none;
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+
+    .action:hover {
+      background-image: linear-gradient(to right, #7ed56f, #28b485);
+   
     }
   </style>
 </head>
 
 <body>
+    <div id="wrapper"></div>
   <header>
     <div class="container">
       <!-- hidden top area toggle link -->
@@ -120,8 +146,7 @@
             </ul>
           </div>
           <!-- Signup Modal -->
-          <div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog"
-            aria-labelledby="mySignupModalLabel" aria-hidden="true">
+          <div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
               <h4 id="mySignupModalLabel">Create an <strong>account</strong></h4>
@@ -151,8 +176,7 @@
                     <button type="submit" class="btn">Sign up</button>
                   </div>
                   <p class="aligncenter margintop20">
-                    Already have an account? <a href="#mySignin" data-dismiss="modal" aria-hidden="true"
-                      data-toggle="modal">Sign in</a>
+                    Already have an account? <a href="#mySignin" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Sign in</a>
                   </p>
                 </div>
               </form>
@@ -160,8 +184,7 @@
           </div>
           <!-- end signup modal -->
           <!-- Sign in Modal -->
-          <div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog"
-            aria-labelledby="mySigninModalLabel" aria-hidden="true">
+          <div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
               <h4 id="mySigninModalLabel">Login to your <strong>account</strong></h4>
@@ -182,20 +205,15 @@
                 </div>
                 <div class="control-group">
                   <div class="controls">
-                    <button type="submit" class="btn">Sign in</button>
+                    <button type="submit" id="signbtn" class="btn">Sign in</button>
                   </div>
-                  <p class="aligncenter margintop20">
-                    Forgot password? <a href="#myReset" data-dismiss="modal" aria-hidden="true"
-                      data-toggle="modal">Reset</a>
-                  </p>
                 </div>
               </form>
             </div>
           </div>
           <!-- end signin modal -->
           <!-- Reset Modal -->
-          <div id="myReset" class="modal styled hide fade" tabindex="-1" role="dialog"
-            aria-labelledby="myResetModalLabel" aria-hidden="true">
+          <div id="myReset" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="myResetModalLabel" aria-hidden="true">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
               <h4 id="myResetModalLabel">Reset your <strong>password</strong></h4>
@@ -225,7 +243,7 @@
       <div class="row">
         <div class="span4">
           <div class="logo">
-            <a href="index.html"><img src="img/raklogo1.jpeg" alt="raklogo" width="100" class="" /></a>
+            <a href="index.html"><img src="img/raklogo1.jpeg" alt="raklogo"  width="100" class="" /></a>
             <!-- <h1>Flat and trendy bootstrap template</h1> -->
           </div>
         </div>
@@ -236,11 +254,11 @@
                 <ul class="nav topnav">
                   <li class="dropdown active">
                     <a href="index.html">Home </i></a>
-
+                   
                   </li>
                   <li class="dropdown">
                     <a href="our-product.html">Our Products</a>
-
+                   
                   </li>
                   <li class="dropdown">
                     <a href="about.html">About </i></a>
@@ -281,123 +299,71 @@
       </div>
     </div>
   </header>
-  <div class="container">
-    <div class="product-details">
-      <!-- Product Images -->
-      <div class="product-images">
-        <img id="mainImage"
-          src="https://5.imimg.com/data5/SELLER/Default/2024/8/446774276/ME/IZ/CP/38167784/grey-pp-granules-500x500.png"
-          alt="Product Image">
-        <div class="thumbnails">
-          <img
-            src="https://5.imimg.com/data5/SELLER/Default/2024/8/446774276/ME/IZ/CP/38167784/grey-pp-granules-500x500.png"
-            alt="Thumbnail" onclick="changeImage(this.src)">
-          <img src="https://via.placeholder.com/400x300/ff5722" alt="Thumbnail" onclick="changeImage(this.src)">
-          <img src="https://via.placeholder.com/400x300/4caf50" alt="Thumbnail" onclick="changeImage(this.src)">
-        </div>
-      </div>
-      <!-- Product Description -->
-      <div class="product-description" id="productDetails">
-        <h2 id="productName">Product Name</h2>
-        <p id="productDescription">Product description will appear here.</p>
-        <p class="price" id="productPrice">₹0.00</p>
-        <a href="#" id="indiamartbtn" class="btn">Buy From IndiaMart</a>
-        <h3>Specifications</h3>
-        <ul id="productSpecifications"></ul>
+  <h2>Material In Data</h2>
+  <div class="container" id="cardContainer"></div>
+  </div></div>
+  <script>
+    const sheetId = "1j-VRk5eeMA_r-YyAle0gKY41zcYe2mwUFKrqf214_As";
+    const apiKey = "AIzaSyAIztg6QnxD9Z6nMBd8dM2vQDeXOncdks8";
+    const range = "Material in!A2:Z100";
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
 
-      </div>
-      <button class="interested-btn" id="interested-btn">Yes I am interested!</button>
-      <dialog id="dialogBox">
-        <p>Greetings, one and all!</p>
-        <form method="dialog">
-          <div class="product-description" id="productDetails">
-            <h2 id="productName">Product Name</h2>
-            <p id="productDescription">Product description will appear here.</p>
-            <p class="price" id="productPrice">₹0.00</p>
-            <a href="#" id="indiamartbtn" class="btn">Buy From IndiaMart</a>
-            <h3>Specifications</h3>
-            <ul id="productSpecifications"></ul>
+    const fetchData = () => {
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const rows = data.values;
+           // Remove last three rows before displaying data
+           if (rows.length > 3) {
+            rows.splice(-3);
+          }
 
+          loadCardData(rows);
+      
+        })
+        .catch(error => console.error("Error:", error));
+    };
+
+    function loadCardData(materialData) {
+      const container = document.querySelector("#cardContainer");
+
+      materialData.forEach(row => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+          <div class="header">
+            <span class="title">${row[3]}</span>
+            <span class="price">${row[2]}</span>
           </div>
-          <button>OK</button>
-        </form>
-      </dialog>
-    </div>
-  </div>
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="span3">
-          <div class="widget">
-            <h5 class="widgetheading">Browse pages</h5>
-            <ul class="link-list">
-              <li><a href="#">About our company</a></li>
-              <li><a href="#">Our services</a></li>
-              <li><a href="#">Meet our team</a></li>
-              <li><a href="#">Explore our portfolio</a></li>
-              <li><a href="#">Get in touch with us</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="span3">
-          <div class="widget">
-            <h5 class="widgetheading">Important stuff</h5>
-            <ul class="link-list">
-              <li><a href="#">Press release</a></li>
-              <li><a href="#">Terms and conditions</a></li>
-              <li><a href="#">Privacy policy</a></li>
-              <li><a href="#">Career center</a></li>
-              <li><a href="#">Flattern forum</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="span3">
-          <div class="widget">
-            <h5 class="widgetheading">Social-Network</h5>
-            <div class="flickr_badge">
-              <div class="span6">
-                <ul class="social-network">
-                  <li>
-                    <a href="#" data-placement="bottom" title="Facebook"><i class="icon-facebook icon-square"></i></a>
-                  </li>
-                  <li>
-                    <a href="#" data-placement="bottom" title="Twitter"><i class="icon-twitter icon-square"></i></a>
-                  </li>
-                  <li>
-                    <a href="#" data-placement="bottom" title="Linkedin"><i class="icon-linkedin icon-square"></i></a>
-                  </li>
-                  <li>
-                    <a href="#" data-placement="bottom" title="Pinterest"><i class="icon-pinterest icon-square"></i></a>
-                  </li>
-                  <li>
-                    <a href="#" data-placement="bottom" title="Google plus"><i
-                        class="icon-google-plus icon-square"></i></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="clear"></div>
-          </div>
-        </div>
-        <div class="span3">
-          <div class="widget">
-            <h5 class="widgetheading">Get in touch with us</h5>
-            <address>
-              <strong>Ram Asharay Kushwaha (Regd)</strong><br />
-              K-278 Corporate Office: <br />
-              Semarang 16425 Indonesia
-            </address>
-            <p>
-              <a href="tel:+91 9599279116"><i class="icon-phone"></i> +91 9599279116</a>
-              <br />
-              <a href="mailto:email@domainname.com"><i class="icon-envelope-alt"></i> email@domainname.com</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <script type="module" src="/js/script.js"></script>
+          <p class="desc">Date:<strong>${row[1]}</strong></p>
+          <ul class="lists">
+            <li class="list">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Weight: <strong>${row[4]}</strong></span>
+            </li>
+            <li class="list">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Price: <strong>Rs. ${row[5]}</strong></span>
+            </li>
+            <li class="list">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+              </svg>
+              <span>Purchase Amount: <strong>Rs. ${row[6]}</strong></span>
+            </li>
+          </ul>
+          <button type="button" class="action">View Details</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    fetchData();
+  </script>
 </body>
 
 </html>

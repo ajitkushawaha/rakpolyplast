@@ -1,5 +1,4 @@
 import productData from './productData.js';
-console.log("productData",productData )
 
 // slider
 document.addEventListener("DOMContentLoaded", function () {
@@ -87,4 +86,33 @@ const FetchData = ()=>{
     })
     .catch(error => console.error("Error fetching data:", error));
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const signInBtn = document.getElementById("signbtn");
+  
+  if (signInBtn) {
+    signInBtn.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent form submission
+      console.log("Click detected!");
+
+      const username = document.getElementById("inputText").value.trim();
+      const password = document.getElementById("inputSigninPassword").value.trim();
+
+      if (!username || !password) {
+        alert("Please enter both username and password!");
+        return;
+      }
+
+      if (username === "sales" && password === "12345") {
+        alert("Login successful!");
+        localStorage.setItem("token", "fake-token"); // Store token
+        window.location.href = "portfolio-2cols.html"; // Redirect user
+      } else {
+        alert("Invalid credentials. Please try again.");
+      }
+    });
+  } else {
+    console.error("Sign-in button not found!");
+  }
+});
 
