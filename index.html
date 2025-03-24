@@ -32,58 +32,15 @@
   
     <!-- start header -->
     <header>
-      <div class="container">
-        <!-- hidden top area toggle link -->
-        <div id="header-hidden-link">
-          <a href="#" class="toggle-link" title="Click me you'll get a surprise" data-target=".hidden-top"><i></i>Open</a>
-        </div>
-        <!-- end toggle link -->
+      <div class="container mobflex">
         <div class="row nomargin">
           <div class="span12">
             <div class="headnav">
               <ul>
-                <li><a href="tel:+919876543210"><i class="icon-phone"></i> Call Us: +91 9599279116</a></li>
+                <li><a href="tel:+91 9599279116"><i class="icon-phone"></i> Call Us: +91 9599279116</a></li>
                 <li><a href="#mySignin" data-toggle="modal">Sign in</a></li>
               </ul>
             </div>
-            <!-- Signup Modal -->
-            <div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 id="mySignupModalLabel">Create an <strong>account</strong></h4>
-              </div>
-              <div class="modal-body">
-                <form class="form-horizontal">
-                  <div class="control-group">
-                    <label class="control-label" for="inputEmail">Email</label>
-                    <div class="controls">
-                      <input type="text" id="inputEmail" placeholder="Email">
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label" for="inputSignupPassword">Password</label>
-                    <div class="controls">
-                      <input type="password" id="inputSignupPassword" placeholder="Password">
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <label class="control-label" for="inputSignupPassword2">Confirm Password</label>
-                    <div class="controls">
-                      <input type="password" id="inputSignupPassword2" placeholder="Password">
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <div class="controls">
-                      <button type="submit" class="btn">Sign up</button>
-                    </div>
-                    <p class="aligncenter margintop20">
-                      Already have an account? <a href="#mySignin" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Sign in</a>
-                    </p>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <!-- end signup modal -->
             <!-- Sign in Modal -->
             <div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
               <div class="modal-header">
@@ -113,38 +70,12 @@
               </div>
             </div>
             <!-- end signin modal -->
-            <!-- Reset Modal -->
-            <div id="myReset" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="myResetModalLabel" aria-hidden="true">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 id="myResetModalLabel">Reset your <strong>password</strong></h4>
-              </div>
-              <div class="modal-body">
-                <form class="form-horizontal">
-                  <div class="control-group">
-                    <label class="control-label" for="inputResetEmail">Email</label>
-                    <div class="controls">
-                      <input type="text" id="inputResetEmail" placeholder="Email">
-                    </div>
-                  </div>
-                  <div class="control-group">
-                    <div class="controls">
-                      <button type="submit" class="btn">Reset password</button>
-                    </div>
-                    <p class="aligncenter margintop20">
-                      We will send instructions on how to reset your password to your inbox
-                    </p>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <!-- end reset modal -->
           </div>
         </div>
-        <div class="row">
+        <div class="row  header_nav">
           <div class="span4">
             <div class="logo">
-              <a href="index.html"><img src="img/raklogo1.png" alt="raklogo"  width="100" class="" /></a>
+              <a href="index.html"><img src="img/raklogo2.png" alt="raklogo"  width="200" class="" /></a>
             </div>
           </div>
           <div class="span8">
@@ -157,7 +88,7 @@
                      
                     </li>
                     <li class="dropdown">
-                      <a href="our-product.html">Our Products</a>
+                      <a href="our-product.html">Products</a>
                      
                     </li>
                     <li class="dropdown">
@@ -195,7 +126,7 @@
           </div>
         </div>
         <div class="da-slide">
-          <h2>High-Quality Plastic Granules</h2>
+          <h2>Quality PP Granules</h2>
           <p>
             RAK Polyplast is a leading manufacturer of recycled plastic granules. Our high-quality granules are used in various industries, ensuring sustainability and durability in every product.
           </p>
@@ -497,6 +428,7 @@
       </div>
     </section>
   </div>
+  
   <footer>
     <div class="container">
       <div class="row">
@@ -564,7 +496,14 @@
       </div>
     </div>
   </footer>
-  <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a>
+  <div class="mobile-tab-bar">
+    <a href="#"><i class="fas fa-home"></i> Home</a>
+    <a href="our-product.html"><i class="fas fa-shopping-cart"></i> Products</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+    <a href="contact.html"><i class="fas fa-user"></i> contact</a>
+    <a href="contact.html"><i class="fas fa-user"></i> Blog</a>
+</div>
+  <!-- <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a> -->
   <!-- javascript
     ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
