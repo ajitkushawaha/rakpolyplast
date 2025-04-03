@@ -1,0 +1,149 @@
+/* Dashboard Layout */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+  }
+  .dashboard_nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:.5rem 1rem;
+    box-shadow:5px 5px 10px rgba(0,0,0, 0.1);
+
+
+    background: #ffffff;
+    position: fixed;
+    top: 0;
+    width: 80%;
+    z-index: 999;
+  }
+  .dashboard_nav .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+  
+  }
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    background: #ffff;
+    color: black;
+    padding-top: 4px;
+    position: fixed;
+    height: 100%;
+    box-shadow: 5px 5px 10px rgba(0,0,0, 0.1);
+
+
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .sidebar ul li button {
+    background: none;
+    border: none;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    background: #e2d7d7;
+    text-align: left;
+    padding: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .sidebar ul li button:hover {
+    background: #495057;
+  }
+  
+  /* Main Content */
+  .main-content {
+    margin-left: 250px;
+    width: 100%;
+}
+  .data_contaner{
+    width:98%;
+    background: #f7f7f7f7;
+    box-shadow: 5px 5px 10px rgba(0,0,0, 0.1);
+    margin: 10px;
+    height: 100%;
+    margin-top: 4rem;
+  }
+  /* Header */
+
+  
+  /* Table Container */
+  .table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+  }
+  
+  /* Fix Table Header */
+  .table thead {
+    position: sticky;
+    top: 0;
+    background-color: #343a40;
+    color: white;
+    z-index: 10;
+  }
+  
+  /* Footer */
+  .footer {
+    background: #f8f9fa;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 250px);
+  }
+  
+  .dropdown a{
+     text-decoration: none;
+  }
+  canvas{
+    background: gray;
+    height:400px !important;
+    width:100% !important;
+    background: white;
+  }
+  .mtin-card{
+    background: white;
+    box-shadow:2px 2px 2px 2px rgba(0,0,0,0.09);
+    border-radius: 2px;
+    color: #343a40
+
+  }
+  .mtot-card{
+    box-shadow:2px 2px 2px 2px rgba(0,0,0,0.09);
+    border-radius: 2px;
+    
+  }
+  #monthlyChart{
+    padding: 1rem;
+    box-shadow:2px 2px 2px 4px rgba(0,0,0,0.09);
+    border-radius: 2px;
+  }
+  #page-title{
+    font-size: 20px;
+  }
+  .card-title{
+    font-size: medium;
+    color: #343a40;
+  }
+  .card-text{
+    font-size: x-large;
+    font-weight: bolder;
+    color: #343a40;
+  }
+ .form-control{
+   width: 50%;
+ }

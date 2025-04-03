@@ -1,369 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Material In - Responsive Cards</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-
-  <!-- css -->
-  <link href="https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:300,400,600,700" rel="stylesheet">
-  <link href="css/bootstrap.css" rel="stylesheet" />
-  <link href="css/bootstrap-responsive.css" rel="stylesheet" />
-  <link href="css/fancybox/jquery.fancybox.css" rel="stylesheet">
-  <link href="css/jcarousel.css" rel="stylesheet" />
-  <link href="css/flexslider.css" rel="stylesheet" />
-  <link href="css/cslider.css" rel="stylesheet" />
-  <link href="css/style.css" rel="stylesheet" />
-  <!-- Theme skin -->
-  <link id="t-colors" href="skins/default.css" rel="stylesheet" />
-  <!-- boxed bg -->
-  <link id="bodybg" href="bodybg/bg1.css" rel="stylesheet" type="text/css" />
-  <!-- Fav and touch icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png" />
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png" />
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png" />
-  <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png" />
- 
-
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
-
-    h2 {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      justify-content: center;
-    }
-
-    .card {
-      background-color: #ffff;
-   
-    color: #000;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-    }
-
-    .title {
-      font-size: 1.2rem;
-      font-weight: bold;
-     
-
-    }
-
-    .price {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin: 10px 0;
-      background-image: linear-gradient(to right, #7ed56f, #28b485);
-    -webkit-background-clip: text;
-    color: transparent;
-    }
-
-    .desc {
-      color: #000;
-      margin-bottom: 10px;
-    }
-
-    .lists {
-      list-style: none;
-      padding: 0;
-    }
-
-    .list {
-      display: flex;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    .list svg {
-      width: 16px;
-      height: 16px;
-      margin-right: 8px;
-      background-image: linear-gradient(to right, #7ed56f, #28b485);
-    -webkit-background-clip: text;
-    color: transparent;
-    }
-
-    .action {
-      display: block;
-      width: 100%;
-      background-image: linear-gradient(to right, #7ed56f, #28b485);
-    
-      color: #ffff;
-      border: none;
-      padding: 10px;
-      text-align: center;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 4px;
-      margin-top: 10px;
-    }
-
-    .action:hover {
-      background-image: linear-gradient(to right, #7ed56f, #28b485);
-   
-    }
-  </style>
+  <title>Material Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/skins/material.css">
 </head>
-
 <body>
-    <div id="wrapper"></div>
-  <header>
-    <div class="container">
-      <!-- hidden top area toggle link -->
-      <div id="header-hidden-link">
-        <a href="#" class="toggle-link" title="Click me you'll get a surprise" data-target=".hidden-top"><i></i>Open</a>
-      </div>
-      <!-- end toggle link -->
-      <div class="row nomargin">
-        <div class="span12">
-          <div class="headnav">
-            <ul>
-              <li><a href="#mySignup" data-toggle="modal"><i class="icon-user"></i> Sign up</a></li>
-              <li><a href="#mySignin" data-toggle="modal">Sign in</a></li>
-            </ul>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <h4 class="text-white text-center py-3">Material Dashboard</h4>
+      <ul>
+        <li><button onclick="fetchMaterialIn()">Material In</button></li>
+        <li><button onclick="fetchMaterialOut()">Material Out</button></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <header class="header">
+        <h2>Material Dashboard</h2>
+      </header>
+
+      <div class="container mt-4">
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label>From:</label>
+            <input type="date" id="fromDate" class="form-control">
           </div>
-          <!-- Signup Modal -->
-          <div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h4 id="mySignupModalLabel">Create an <strong>account</strong></h4>
-            </div>
-            <div class="modal-body">
-              <form class="form-horizontal">
-                <div class="control-group">
-                  <label class="control-label" for="inputEmail">Email</label>
-                  <div class="controls">
-                    <input type="text" id="inputEmail" placeholder="Email">
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="inputSignupPassword">Password</label>
-                  <div class="controls">
-                    <input type="password" id="inputSignupPassword" placeholder="Password">
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="inputSignupPassword2">Confirm Password</label>
-                  <div class="controls">
-                    <input type="password" id="inputSignupPassword2" placeholder="Password">
-                  </div>
-                </div>
-                <div class="control-group">
-                  <div class="controls">
-                    <button type="submit" class="btn">Sign up</button>
-                  </div>
-                  <p class="aligncenter margintop20">
-                    Already have an account? <a href="#mySignin" data-dismiss="modal" aria-hidden="true" data-toggle="modal">Sign in</a>
-                  </p>
-                </div>
-              </form>
-            </div>
+          <div class="col-md-4">
+            <label>To:</label>
+            <input type="date" id="toDate" class="form-control">
           </div>
-          <!-- end signup modal -->
-          <!-- Sign in Modal -->
-          <div id="mySignin" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySigninModalLabel" aria-hidden="true">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h4 id="mySigninModalLabel">Login to your <strong>account</strong></h4>
-            </div>
-            <div class="modal-body">
-              <form class="form-horizontal">
-                <div class="control-group">
-                  <label class="control-label" for="inputText">Username</label>
-                  <div class="controls">
-                    <input type="text" id="inputText" placeholder="Username">
-                  </div>
-                </div>
-                <div class="control-group">
-                  <label class="control-label" for="inputSigninPassword">Password</label>
-                  <div class="controls">
-                    <input type="password" id="inputSigninPassword" placeholder="Password">
-                  </div>
-                </div>
-                <div class="control-group">
-                  <div class="controls">
-                    <button type="submit" id="signbtn" class="btn">Sign in</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-          <!-- end signin modal -->
-          <!-- Reset Modal -->
-          <div id="myReset" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="myResetModalLabel" aria-hidden="true">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h4 id="myResetModalLabel">Reset your <strong>password</strong></h4>
-            </div>
-            <div class="modal-body">
-              <form class="form-horizontal">
-                <div class="control-group">
-                  <label class="control-label" for="inputResetEmail">Email</label>
-                  <div class="controls">
-                    <input type="text" id="inputResetEmail" placeholder="Email">
-                  </div>
-                </div>
-                <div class="control-group">
-                  <div class="controls">
-                    <button type="submit" class="btn">Reset password</button>
-                  </div>
-                  <p class="aligncenter margintop20">
-                    We will send instructions on how to reset your password to your inbox
-                  </p>
-                </div>
-              </form>
-            </div>
-          </div>
-          <!-- end reset modal -->
-        </div>
-      </div>
-      <div class="row">
-        <div class="span4">
-          <div class="logo">
-            <a href="index.html"><img src="img/raklogo1.jpeg" alt="raklogo"  width="100" class="" /></a>
-            <!-- <h1>Flat and trendy bootstrap template</h1> -->
+          <div class="col-md-4">
+            <label>User:</label>
+            <input type="text" id="userFilter" class="form-control" placeholder="Enter user name">
           </div>
         </div>
-        <div class="span8">
-          <div class="navbar navbar-static-top">
-            <div class="navigation">
-              <nav>
-                <ul class="nav topnav">
-                  <li class="dropdown active">
-                    <a href="index.html">Home </i></a>
-                   
-                  </li>
-                  <li class="dropdown">
-                    <a href="our-product.html">Our Products</a>
-                   
-                  </li>
-                  <li class="dropdown">
-                    <a href="about.html">About </i></a>
-                    <!-- <ul class="dropdown-menu">
-                      <li><a href="about.html">About us</a></li>
-                      <li><a href="pricingbox.html">Pricing boxes</a></li>
-                      <li><a href="testimonials.html">Testimonials</a></li>
-                      <li><a href="404.html">404</a></li>
-                    </ul> -->
-                  </li>
-                  <li class="dropdown">
-                    <a href="#">Portfolio <i class="icon-angle-down"></i></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="portfolio-2cols.html">Portfolio 2 columns</a></li>
-                      <li><a href="portfolio-3cols.html">Portfolio 3 columns</a></li>
-                      <li><a href="matrial-in.html">Portfolio 4 columns</a></li>
-                      <li><a href="portfolio-detail.html">Portfolio detail</a></li>
-                    </ul>
-                  </li>
-                  <li class="dropdown">
-                    <a href="#">Blog <i class="icon-angle-down"></i></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="our-product.html">Blog left sidebar</a></li>
-                      <li><a href="blog-right-sidebar.html">Blog right sidebar</a></li>
-                      <li><a href="post-left-sidebar.html">Post left sidebar</a></li>
-                      <li><a href="post-right-sidebar.html">Post right sidebar</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a href="contact.html">Contact </a>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-            <!-- end navigation -->
-          </div>
+        <button class="btn btn-primary" onclick="filterData()">Apply Filters</button>
+
+        <h4 class="mt-4">Summary</h4>
+        <p><strong>Total Weight:</strong> <span id="totalPrice">0</span></p>
+        <p><strong>Total Purchase Amount:</strong> <span id="totalPurchase">0</span></p>
+
+        <div class="table-container mt-3">
+          <table class="table table-bordered">
+            <thead class="table-dark">
+              <tr>
+                <th>Date</th>
+                <th>User</th>
+                <th>Material Name</th>
+                <th>Weight</th>
+                <th>Price (Rs.)</th>
+                <th>Purchase Amount (Rs.)</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
         </div>
       </div>
+
+      <footer class="footer">
+        <p>&copy; 2025 Material Dashboard | All Rights Reserved</p>
+      </footer>
     </div>
-  </header>
-  <h2>Material In Data</h2>
-  <div class="container" id="cardContainer"></div>
-  </div></div>
+  </div>
+
   <script>
     const sheetId = "1j-VRk5eeMA_r-YyAle0gKY41zcYe2mwUFKrqf214_As";
     const apiKey = "AIzaSyAIztg6QnxD9Z6nMBd8dM2vQDeXOncdks8";
-    const range = "Material in!A2:Z100";
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+    let rawData = [];
 
-    const fetchData = () => {
+    // Fetch Material Out Data
+    function fetchMaterialOut() {
+      const range = "Material Out!A2:Z100";
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+      
       fetch(url)
         .then(response => response.json())
         .then(data => {
-          const rows = data.values;
-           // Remove last three rows before displaying data
-           if (rows.length > 3) {
-            rows.splice(-3);
-          }
-
-          loadCardData(rows);
-      
+          rawData = data.values;
+          loadTableData(rawData);
         })
         .catch(error => console.error("Error:", error));
-    };
-
-    function loadCardData(materialData) {
-      const container = document.querySelector("#cardContainer");
-
-      materialData.forEach(row => {
-        const card = document.createElement("div");
-        card.classList.add("card");
-        card.innerHTML = `
-          <div class="header">
-            <span class="title">${row[3]}</span>
-            <span class="price">${row[2]}</span>
-          </div>
-          <p class="desc">Date:<strong>${row[1]}</strong></p>
-          <ul class="lists">
-            <li class="list">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span>Weight: <strong>${row[4]}</strong></span>
-            </li>
-            <li class="list">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span>Price: <strong>Rs. ${row[5]}</strong></span>
-            </li>
-            <li class="list">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span>Purchase Amount: <strong>Rs. ${row[6]}</strong></span>
-            </li>
-          </ul>
-          <button type="button" class="action">View Details</button>
-        `;
-        container.appendChild(card);
-      });
     }
 
-    fetchData();
-  </script>
-</body>
+    // Fetch Material In Data
+    function fetchMaterialIn() {
+      const range = "Material in!A2:Z100";
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+      
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          let rows = data.values;
+          if (rows.length > 3) {
+            rows.splice(-3);
+          }
+          rawData = rows;
+          loadTableData(rows);
+        })
+        .catch(error => console.error("Error:", error));
+    }
 
+    // Load Data into Table
+    function loadTableData(materialData) {
+      const tableBody = document.querySelector("#tableBody");
+      tableBody.innerHTML = "";
+      let totalPrice = 0;
+      let totalPurchase = 0;
+
+      materialData.forEach(row => {
+        if (row.length < 7) return;
+        let date = row[1], user = row[2], price = parseFloat(row[4]) || 0, purchase = parseFloat(row[6]) || 0;
+        totalPrice += price;
+        totalPurchase += purchase;
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${date}</td>
+          <td>${user}</td>
+          <td>${row[3]}</td>
+          <td>${row[4]}</td>
+          <td>&#8377; ${price.toFixed(2)}</td>
+          <td>&#8377; ${purchase.toFixed(2)}</td>
+        `;
+        tableBody.appendChild(tr);
+      });
+
+      document.getElementById("totalPrice").textContent = `₹ ${totalPrice.toFixed(2)}`;
+      document.getElementById("totalPurchase").textContent = `₹ ${totalPurchase.toFixed(2)}`;
+    }
+
+    // Filter Data
+    function filterData() {
+      const fromDate = new Date(document.getElementById("fromDate").value);
+      const toDate = new Date(document.getElementById("toDate").value);
+      const userFilter = document.getElementById("userFilter").value.toLowerCase();
+
+      const filteredData = rawData.filter(row => {
+        let rowDate = new Date(row[1]);
+        let rowUser = row[2].toLowerCase();
+        return (!isNaN(fromDate) ? rowDate >= fromDate : true) &&
+               (!isNaN(toDate) ? rowDate <= toDate : true) &&
+               (userFilter ? rowUser.includes(userFilter) : true);
+      });
+
+      loadTableData(filteredData);
+    }
+  </script>
+   <script src="js/bootstrap.js"></script>
+</body>
 </html>

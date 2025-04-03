@@ -254,7 +254,7 @@
                   <li class="dropdown">
                     <a href="#">Portfolio <i class="icon-angle-down"></i></a>
                     <ul class="dropdown-menu">
-                      <li><a href="portfolio-2cols.html">Portfolio 2 columns</a></li>
+                      <li><a href="materieal-dashbord.html">Portfolio 2 columns</a></li>
                       <li><a href="portfolio-3cols.html">Portfolio 3 columns</a></li>
                       <li><a href="matrial-in.html">Portfolio 4 columns</a></li>
                       <li><a href="portfolio-detail.html">Portfolio detail</a></li>
@@ -398,6 +398,38 @@
     </div>
   </footer>
   <script type="module" src="/js/script.js"></script>
+  <script >
+    document.addEventListener("DOMContentLoaded", () => {
+  const signInBtn = document.getElementById("signbtn");
+  
+  if (signInBtn) {
+    signInBtn.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent form submission
+      console.log("Click detected!");
+
+      const username = document.getElementById("inputText").value.trim();
+      const password = document.getElementById("inputSigninPassword").value.trim();
+      console.log(username , password)
+      if (!username || !password) {
+        alert("Please enter both username and password!");
+        return;
+      }
+
+      if (username === "sales" && password === "12345") {
+        alert("Login successful!");
+        localStorage.setItem("token", "fake-token"); // Store token
+        window.location.href = "materieal-dashbord.html"; // Redirect user
+      }else if(username === "purchage" && password === "12345"){
+        window.location.href = "material-in.html";
+      } else {
+        alert("Invalid credentials. Please try again.");
+      }
+    });
+  } else {
+    console.error("Sign-in button not found!");
+  }
+});
+</script>
 </body>
 
 </html>
