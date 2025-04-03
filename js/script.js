@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (username === "sales" && password === "12345") {
         alert("Login successful!");
         localStorage.setItem("token", "fake-token"); // Store token
-        window.location.href = "portfolio-2cols.html"; // Redirect user
+        window.location.href = "materieal-dashbord.html"; // Redirect user
       } else {
         alert("Invalid credentials. Please try again.");
       }
@@ -115,4 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("Sign-in button not found!");
   }
 });
+
+
+
 

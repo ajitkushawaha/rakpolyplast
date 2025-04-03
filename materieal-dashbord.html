@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Material Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/skins/material.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="span4">
+        <div class="logo">
+          <a href="index.html"><img src="img/raklogo2.png" alt="raklogo" width="200" class="" /></a>
+        </div>
+      </div>
+      <ul>
+        <li><button onclick="showDashboard()">Dashboard</button></li>
+        <li><button onclick="fetchMaterialIn()">Material In</button></li>
+        <li><button onclick="fetchMaterialOut()">Material Out</button></li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+      <nav class="dashboard_nav">
+        <h2 id="page-title">Total Material In|Out</h2>
+        <ul class="nav topnav">
+          <li class="dropdown active">
+            <a href="index.html">Home </i></a>
+
+          </li>
+          <li class="dropdown">
+            <a href="our-product.html">Products</a>
+
+          </li>
+          <li class="dropdown">
+            <a href="about.html">About </i></a>
+          </li>
+
+          <li class="dropdown">
+            <a href="blog-right-sidebar.html">Blog</a>
+
+          </li>
+          <li>
+            <a href="contact.html">Contact </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="data_contaner">
+        <div id="dashboard-view" class="container mt-1">
+          <h4>Summary</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card text-white mtin-card mb-3 d-flex  align-items-start flex-row" >
+                <div class="card-body">
+                  <h5 class="card-title">Material In</h5>
+                  <p class="card-text" id="totalMaterialIn">0</p>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Purchase Amount</h5>
+                  <p class="card-text" id="totalPurchaseAmount">0</p>
+                </div>
+               
+              </div>
+            </div>
+        
+            <div class="col-md-6">
+              <div class="card text-white mtot-card mb-3 d-flex  align-items-start flex-row">
+                <div class="card-body">
+                  <h5 class="card-title">Material Out</h5>
+                  <p class="card-text" id="totalMaterialOut">0</p>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Sale Amount</h5>
+                  <p class="card-text" id="totalSaleAmount">0</p>
+                </div>
+              </div>
+            </div>
+           
+          </div>
+          <canvas id="monthlyChart" width="400" height="200"></canvas>
+        </div>
+
+        <div id="data-view" class="container mt-4" style="display: none;">
+          <div class="row mb-3">
+            <div class="col-md-4">
+              <label>From:</label>
+              <input type="date" id="fromDate" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label>To:</label>
+              <input type="date" id="toDate" class="form-control">
+            </div>
+            <div class="col-md-4">
+              <label>Party Name:</label>
+              <input type="text" id="userFilter" class="form-control" placeholder="Enter Party Name">
+            </div>
+          </div>
+          <div class="summary_cont">
+          <button class="btn btn-primary" onclick="filterData()">Apply Filters</button>
+            <h4 class="">Summary</h4> 
+            <p><strong>Total Weight:</strong> <span id="totalWeight">0</span>(Kg)</p>
+            <p><strong id="purchageText">Total Purchase Amount:</strong> <span id="totalPurchase">0</span></p>
+          </div>
+          <div class="table-container mt-3">
+            <table class="table table-bordered">
+              <thead class="table-dark">
+                <tr>
+                  <th>Date</th>
+                  <th id="vendorName"></th>
+                  <th>Material Name</th>
+                  <th>Weight (Kg)</th>
+                  <th>Price (Rs.)</th>
+                  <th id="purchageSale"></th>
+                </tr>
+              </thead>
+              <tbody id="tableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <footer class="footer">
+        <p>&copy; 2025 Material Dashboard | All Rights Reserved</p>
+      </footer>
+    </div>
+  </div>
+  <script type="text/javascript" src="js/material.js"></script>
+
+</body>
+
+</html>

@@ -32,12 +32,12 @@
       "@type": "Organization",
       "name": "RAK Polyplast",
       "url": "https://www.rakpolyplast.com",
-      "logo": "https://www.rakpolyplast.com/images/logo.png",
+      "logo": "https://www.rakpolyplast.com/img/raklogo2.png,
       "description": "RAK Polyplast is a leading manufacturer of recycled plastic granules and eco-friendly polymer solutions.",
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+91-XXXXXXXXXX",
-        "contactType": "customer service"
+        "telephone": "+91-9540041106",
+        "contactType": "rakpolyplast.com"
       }
     }
     </script>
@@ -539,7 +539,7 @@
     <a href="contact.html"><i class="fas fa-user"></i> contact</a>
     <a href="contact.html"><i class="fas fa-user"></i> Blog</a>
 </div>
-  <!-- <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a> -->
+  <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a>
   <!-- javascript
     ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
@@ -550,20 +550,16 @@
   <script src="js/jquery.fancybox.pack.js"></script>
   <script src="js/jquery.fancybox-media.js"></script>
   <script src="js/google-code-prettify/prettify.js"></script>
-  <script src="js/portfolio/jquery.quicksand.js"></script>
-  <script src="js/portfolio/setting.js"></script>
   <script src="js/jquery.flexslider.js"></script>
   <script src="js/jquery.nivo.slider.js"></script>
   <script src="js/modernizr.custom.js"></script>
-  <script src="js/jquery.ba-cond.min.js"></script>
   <script src="js/jquery.slitslider.js"></script>
-  <script src="js/modernizr.custom.28468.js"></script>
   <script src="js/jquery.cslider.js"></script>
-  <script src="js/animate.js"></script>
 
   <!-- Template Custom JavaScript File -->
   <script type="text/javascript" src="js/custom.js"></script>
-  <script >
+  
+<script >
     document.addEventListener("DOMContentLoaded", () => {
   const signInBtn = document.getElementById("signbtn");
   
@@ -574,7 +570,7 @@
 
       const username = document.getElementById("inputText").value.trim();
       const password = document.getElementById("inputSigninPassword").value.trim();
-
+      console.log(username , password)
       if (!username || !password) {
         alert("Please enter both username and password!");
         return;
@@ -583,7 +579,7 @@
       if (username === "sales" && password === "12345") {
         alert("Login successful!");
         localStorage.setItem("token", "fake-token"); // Store token
-        window.location.href = "portfolio-2cols.html"; // Redirect user
+        window.location.href = "materieal-dashbord.html"; // Redirect user
       }else if(username === "purchage" && password === "12345"){
         window.location.href = "material-in.html";
       } else {
@@ -594,9 +590,7 @@
     console.error("Sign-in button not found!");
   }
 });
-
-  </script>
-
+</script>
 
 </body>
 
