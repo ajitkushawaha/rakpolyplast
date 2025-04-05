@@ -57,6 +57,7 @@ function fetchMaterialIn() {
   document.getElementById("data-view").style.display = "block";
   document.getElementById("page-title").innerText = "Material In";
   const range = "Material in!A2:Z100";
+  console.log("Material")
   const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
   fetch(url)
     .then(response => response.json())
@@ -101,20 +102,23 @@ function loadTableData(materialData, type) {
     document.getElementById("vendorName").textContent = `Suppliers Name`;
     document.getElementById("totalMaterialIn").textContent = `${totalWeight.toFixed(2)}`;
     document.getElementById("totalPurchaseAmount").textContent = `₹ ${totalAmount.toFixed(2)}`;
+    document.getElementById("openGoogleFormBtn").textContent = "Add Material";
+    document.getElementById("googleFormIframe").setAttribute("href", "https://forms.gle/tTgv54ZEb4PBxwyy5");
+
+    
   } else {
     document.getElementById("purchageSale").textContent = `Sale Amount (Rs)`;
     document.getElementById("vendorName").textContent = `Buyers Name`;
     document.getElementById("purchageText").textContent = `Total Sales Amount`;
     document.getElementById("totalMaterialOut").textContent = `${totalWeight.toFixed(2)}`;;
     document.getElementById("totalSaleAmount").textContent = `₹ ${totalAmount.toFixed(2)}`;
+    document.getElementById("openGoogleFormBtn").textContent = "Out Material";
+    document.getElementById("googleFormIframe").setAttribute("href", "https://forms.gle/A9kKYiPTXdRB7FJD7");
 
   }
 }
 
 function filterData() { }
-
-
-
 
 function fetchMonthlyData() {
     const ranges = ["Material in!A2:Z100", "Material Out!A2:Z100"];
@@ -222,3 +226,67 @@ function formatWeight(weight, unit = 'kg', decimals = 2) {
   return `${weight.toFixed(decimals)} ${unit}`;
 }
 showDashboard();
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const openFormBtn = document.getElementById("openGoogleFormBtn");
+  const popup = document.getElementById("googleFormModal");
+  const closeBtn = document.querySelector(".close-btn");
+
+  openFormBtn.addEventListener("click", function () {
+      popup.style.display = "flex";
+  });
+
+  closeBtn.addEventListener("click", function () {
+      popup.style.display = "none";
+      fetchMaterialIn()
+  });
+
+  // Close popup if user clicks outside the modal content
+  window.addEventListener("click", function (event) {
+      if (event.target === popup) {
+          popup.style.display = "none";
+      }
+  });
+});
+
+let addOutbtn = document.getElementById("openGoogleFormBtn")
+ addOutbtn.addEventListener("click", function (){
+  let addMt = document.getElementById("openGoogleFormBtn").textContent;
+  console.log("Open", addMt);
+   if(addMt === "Add Material"){
+    openGoogleForm("https://forms.gle/A9kKYiPTXdRB7FJD7 ");
+
+ } else {
+   openGoogleForm("https://forms.gle/tTgv54ZEb4PBxwyy5");
+ }
+});
+ 
+function openGoogleForm(formUrl) {
+  // Set the iframe src
+  window.open(formUrl, "_blank");
+ 
+}
+
+
+function setActiveTab(button) {
+  const buttons = document.querySelectorAll(".mobile-tab-bar button");
+  buttons.forEach((btn) => btn.classList.remove("active"));
+  button.classList.add("active");
+}
+// Example usage inside click:
+document.querySelectorAll(".mobile-tab-bar button").forEach((btn) => {
+  btn.addEventListener("click", function () {
+    setActiveTab(this);
+  });
+});
+
+
+function logoutAlert() {
+  var userConfirmed = confirm("Are you sure you want Logout?");
+  if (userConfirmed) {
+      // Proceed with deletion
+      alert("Logout successfully.");
+      window.location.href = "index.html"; // Redirect to login page
+  } 
+}
