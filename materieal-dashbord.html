@@ -12,8 +12,10 @@
 
 <body>
   <div class="dashboard-container">
+    <!-- Toggle Button -->
     <!-- Sidebar -->
     <nav class="sidebar">
+      <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
       <div class="span4">
         <div class="logo">
           <a href="index.html"><img src="img/raklogo2.png" alt="raklogo" width="200" class="" /></a>
@@ -25,10 +27,29 @@
         <li><button onclick="fetchMaterialOut()">Material Out</button></li>
       </ul>
     </nav>
-
+    <!-- Mobile Tab Bar -->
+    <div class="mobile-tab-bar">
+      <button onclick="showDashboard()">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </button>
+      <button onclick="fetchMaterialIn()">
+        <i class="fas fa-arrow-down"></i>
+        <span>Material In</span>
+      </button>
+      <button onclick="fetchMaterialOut()">
+        <i class="fas fa-arrow-up"></i>
+        <span>Material Out</span>
+      </button>
+    </div>
+    
     <!-- Main Content -->
     <div class="main-content" id="main-content">
       <nav class="dashboard_nav">
+        <div class="logout_icon-logo">
+          <a href="index.html"><img src="img/raklogo2.png" alt="raklogo" width="200" class="raklogo" /></a>
+          <button onclick="logoutAlert()" title="Logout"><img class="logout_icon" src="/img/logout_3583336.png" alt=""></button>
+        </div>
         <h2 id="page-title">Total Material In|Out</h2>
         <ul class="nav topnav">
           <li class="dropdown active">
@@ -57,7 +78,7 @@
           <h4>Summary</h4>
           <div class="row">
             <div class="col-md-6">
-              <div class="card text-white mtin-card mb-3 d-flex  align-items-start flex-row" >
+              <div class="card text-white mtin-card mb-3 d-flex  align-items-start flex-row">
                 <div class="card-body">
                   <h5 class="card-title">Material In</h5>
                   <p class="card-text" id="totalMaterialIn">0</p>
@@ -66,10 +87,10 @@
                   <h5 class="card-title">Purchase Amount</h5>
                   <p class="card-text" id="totalPurchaseAmount">0</p>
                 </div>
-               
+
               </div>
             </div>
-        
+
             <div class="col-md-6">
               <div class="card text-white mtot-card mb-3 d-flex  align-items-start flex-row">
                 <div class="card-body">
@@ -82,32 +103,40 @@
                 </div>
               </div>
             </div>
-           
+
           </div>
           <canvas id="monthlyChart" width="400" height="200"></canvas>
         </div>
 
         <div id="data-view" class="container mt-4" style="display: none;">
           <div class="row mb-3">
-            <div class="col-md-4">
+            <div class="col-md-3">
               <label>From:</label>
               <input type="date" id="fromDate" class="form-control">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
               <label>To:</label>
               <input type="date" id="toDate" class="form-control">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
               <label>Party Name:</label>
               <input type="text" id="userFilter" class="form-control" placeholder="Enter Party Name">
             </div>
+            <div class="col-md-3">
+              <button class="form-control btn btn-primary mt-4" onclick="filterData()">Apply Filters</button>
+            </div>
           </div>
           <div class="summary_cont">
-          <button class="btn btn-primary" onclick="filterData()">Apply Filters</button>
-            <h4 class="">Summary</h4> 
+            <h4 class="">Summary</h4>
             <p><strong>Total Weight:</strong> <span id="totalWeight">0</span>(Kg)</p>
-            <p><strong id="purchageText">Total Purchase Amount:</strong> <span id="totalPurchase">0</span></p>
+            <p><strong id="purchageText">Total Purchase:</strong> <span id="totalPurchase">0</span></p>
+            <a src="" class="btn btn-primary " id="openGoogleFormBtn"></a>
           </div>
+          <!-- Add Button to Open Google Form -->
+
+
+
+
           <div class="table-container mt-3">
             <table class="table table-bordered">
               <thead class="table-dark">
