@@ -3110,9 +3110,27 @@ article .align-right {
     align-items:flex-start;
     justify-content: space-between;
   }
+  .widget  {
+    align-items: self-start;
+    
+  }
+  .widgetheading {
+    text-align: left;
+}
+.ft_widget {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.ft_widget h5 {
+  text-align: center;
+
+  
 }
 .da-img video {
   width: 480px;
   border: 5px solid rgb(48, 211, 203);
   border-radius: 50px;
+}
 }
