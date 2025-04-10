@@ -102,8 +102,8 @@
 
 .product-card img {
     width: 100%;
-    object-fit: cover;
-
+    aspect-ratio: 3/2;
+    object-fit:fill;
 }
 
 .product-card h3 {
@@ -172,19 +172,26 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   margin-bottom: 10px;
+  aspect-ratio: 3/2;
+  object-fit: cover;
 }
 
 .product-images .thumbnails {
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
 }
 
 .product-images .thumbnails img {
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   border: 1px solid #ddd;
   border-radius: 5px;
+  object-fit: cover;
+  aspect-ratio: 3/2;
+
 }
 
 .product-description {
@@ -290,6 +297,27 @@ background:none;
   border-radius: 4px;
   
 }
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-size: 20px !important;
+
+}
+#productName {
+  font-size: 1.2em !important;
+  
+}
+.product-description h3, h4{
+  font-size: 1.2em !important;
+  font-weight: 600;
+
+}
+.primary-title{
+ font-size: 1.2rem
+}
+.product-title-contanier h2 {
+  color:  #28a745;
+  font-weight: 600;
+  font-size: 30px;
+}
 
 }
 
@@ -297,7 +325,9 @@ background:none;
 
 .swiper-button-next, .swiper-button-prev {
   color:#7ed56f;
+  width: 20px;
  }
+ 
 
 
 /* General Styles for the Dialog Box */
