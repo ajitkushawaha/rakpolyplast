@@ -1,6 +1,7 @@
 const sheetId = "1j-VRk5eeMA_r-YyAle0gKY41zcYe2mwUFKrqf214_As";
 const apiKey = "AIzaSyAIztg6QnxD9Z6nMBd8dM2vQDeXOncdks8";
 let rawData = [];
+let currentDataType = "in"; // or "out"
 
 function updateDashboardTotals() {
     const ranges = ["Material in!A2:Z100", "Material Out!A2:Z100"];
@@ -37,6 +38,7 @@ function showDashboard() {
 }
 
 function fetchMaterialOut() {
+  currentDataType = "out";
   document.getElementById("dashboard-view").style.display = "none";
   document.getElementById("data-view").style.display = "block";
   document.getElementById("page-title").innerText = "Material Out";
@@ -53,6 +55,7 @@ function fetchMaterialOut() {
 }
 
 function fetchMaterialIn() {
+  currentDataType = "in";
   document.getElementById("dashboard-view").style.display = "none";
   document.getElementById("data-view").style.display = "block";
   document.getElementById("page-title").innerText = "Material In";
@@ -103,7 +106,6 @@ function loadTableData(materialData, type) {
     document.getElementById("totalMaterialIn").textContent = `${totalWeight.toFixed(2)}`;
     document.getElementById("totalPurchaseAmount").textContent = `₹ ${totalAmount.toFixed(2)}`;
     document.getElementById("openGoogleFormBtn").textContent = "Add Material";
-    document.getElementById("googleFormIframe").setAttribute("href", "https://forms.gle/tTgv54ZEb4PBxwyy5");
 
     
   } else {
@@ -113,12 +115,11 @@ function loadTableData(materialData, type) {
     document.getElementById("totalMaterialOut").textContent = `${totalWeight.toFixed(2)}`;;
     document.getElementById("totalSaleAmount").textContent = `₹ ${totalAmount.toFixed(2)}`;
     document.getElementById("openGoogleFormBtn").textContent = "Out Material";
-    document.getElementById("googleFormIframe").setAttribute("href", "https://forms.gle/A9kKYiPTXdRB7FJD7");
 
   }
 }
 
-function filterData() { }
+
 
 function fetchMonthlyData() {
     const ranges = ["Material in!A2:Z100", "Material Out!A2:Z100"];
@@ -289,4 +290,42 @@ function logoutAlert() {
       alert("Logout successfully.");
       window.location.href = "index.html"; // Redirect to login page
   } 
+}
+
+
+function filterData(inOut) {
+  const fromDateVal = document.getElementById("fromDate").value;
+  const toDateVal = document.getElementById("toDate").value;
+  const userFilter = document.getElementById("userFilter").value.trim().toLowerCase();
+
+  const fromDate = fromDateVal ? new Date(fromDateVal) : null;
+  const toDate = toDateVal ? new Date(toDateVal) : null;
+
+  const range = currentDataType === "in" ? "Material in!A2:Z100" : "Material out!A2:Z100";
+  const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
+
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      rawData = data.values;
+
+      const filteredData = rawData.filter(row => {
+        const rowDate = row[0] ? new Date(row[0]) : null;
+        const rowUser = (row[2] || "").trim().toLowerCase();
+
+        if (rowDate && isNaN(rowDate.getTime())) return false;
+
+        const matchDate =
+          (!fromDate || (rowDate && rowDate >= fromDate)) &&
+          (!toDate || (rowDate && rowDate <= toDate));
+
+        const matchUser =
+          !userFilter || rowUser.includes(userFilter);
+
+        return matchDate && matchUser;
+      });
+
+      loadTableData(filteredData);
+    })
+    .catch(error => console.error("Filter Error:", error));
 }
