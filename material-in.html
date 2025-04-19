@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Material Dashboard</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/skins/material.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/skins/material.css" />
 </head>
 <body>
   <div class="dashboard-container">
@@ -28,22 +28,22 @@
         <div class="row mb-3">
           <div class="col-md-4">
             <label>From:</label>
-            <input type="date" id="fromDate" class="form-control">
+            <input type="date" id="fromDate" class="form-control" />
           </div>
           <div class="col-md-4">
             <label>To:</label>
-            <input type="date" id="toDate" class="form-control">
+            <input type="date" id="toDate" class="form-control" />
           </div>
           <div class="col-md-4">
             <label>User:</label>
-            <input type="text" id="userFilter" class="form-control" placeholder="Enter user name">
+            <input type="text" id="userFilter" class="form-control" placeholder="Enter user name" />
           </div>
         </div>
         <button class="btn btn-primary" onclick="filterData()">Apply Filters</button>
 
         <h4 class="mt-4">Summary</h4>
-        <p><strong>Total Weight:</strong> <span id="totalPrice">0</span></p>
-        <p><strong>Total Purchase Amount:</strong> <span id="totalPurchase">0</span></p>
+        <p><strong>Total Weight:</strong> <span id="totalPrice">₹ 0</span></p>
+        <p><strong>Total Purchase Amount:</strong> <span id="totalPurchase">₹ 0</span></p>
 
         <div class="table-container mt-3">
           <table class="table table-bordered">
@@ -68,89 +68,8 @@
     </div>
   </div>
 
-  <script>
-    const sheetId = "1j-VRk5eeMA_r-YyAle0gKY41zcYe2mwUFKrqf214_As";
-    const apiKey = "AIzaSyAIztg6QnxD9Z6nMBd8dM2vQDeXOncdks8";
-    let rawData = [];
-
-    // Fetch Material Out Data
-    function fetchMaterialOut() {
-      const range = "Material Out!A2:Z100";
-      const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
-      
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          rawData = data.values;
-          loadTableData(rawData);
-        })
-        .catch(error => console.error("Error:", error));
-    }
-
-    // Fetch Material In Data
-    function fetchMaterialIn() {
-      const range = "Material in!A2:Z100";
-      const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${range}?key=${apiKey}`;
-      
-      fetch(url)
-        .then(response => response.json())
-        .then(data => {
-          let rows = data.values;
-          if (rows.length > 3) {
-            rows.splice(-3);
-          }
-          rawData = rows;
-          loadTableData(rows);
-        })
-        .catch(error => console.error("Error:", error));
-    }
-
-    // Load Data into Table
-    function loadTableData(materialData) {
-      const tableBody = document.querySelector("#tableBody");
-      tableBody.innerHTML = "";
-      let totalPrice = 0;
-      let totalPurchase = 0;
-
-      materialData.forEach(row => {
-        if (row.length < 7) return;
-        let date = row[1], user = row[2], price = parseFloat(row[4]) || 0, purchase = parseFloat(row[6]) || 0;
-        totalPrice += price;
-        totalPurchase += purchase;
-
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${date}</td>
-          <td>${user}</td>
-          <td>${row[3]}</td>
-          <td>${row[4]}</td>
-          <td>&#8377; ${price.toFixed(2)}</td>
-          <td>&#8377; ${purchase.toFixed(2)}</td>
-        `;
-        tableBody.appendChild(tr);
-      });
-
-      document.getElementById("totalPrice").textContent = `₹ ${totalPrice.toFixed(2)}`;
-      document.getElementById("totalPurchase").textContent = `₹ ${totalPurchase.toFixed(2)}`;
-    }
-
-    // Filter Data
-    function filterData() {
-      const fromDate = new Date(document.getElementById("fromDate").value);
-      const toDate = new Date(document.getElementById("toDate").value);
-      const userFilter = document.getElementById("userFilter").value.toLowerCase();
-
-      const filteredData = rawData.filter(row => {
-        let rowDate = new Date(row[1]);
-        let rowUser = row[2].toLowerCase();
-        return (!isNaN(fromDate) ? rowDate >= fromDate : true) &&
-               (!isNaN(toDate) ? rowDate <= toDate : true) &&
-               (userFilter ? rowUser.includes(userFilter) : true);
-      });
-
-      loadTableData(filteredData);
-    }
-  </script>
-   <script src="js/bootstrap.js"></script>
+ 
+  <script src="./js/material.js"></script>
+  <script src="js/bootstrap.js"></script>
 </body>
 </html>

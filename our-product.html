@@ -199,16 +199,16 @@
       <div class="product_container">
         <div class="product-details">
           <!-- Product Images -->
-          <div class="product-images" img id="mainImage1">
-            <img id="mainImage"
+          <div class="product-images" id="mainImage1">
+            <img class="mainImage"
             src="/img/pd/ppn_82.jpg"
             alt="Product Image">
           <div class="thumbnails">
             <img
               src="/img/pd/ppn2_82.jpg"
-              alt="Thumbnail" onclick="changeImage(this.src)">
-            <img src="/img/pd/ppn2_82.jpg" alt="Thumbnail" onclick="changeImage(this.src)">
-            <img src="/img/pd/ppn2_82.jpg" alt="Thumbnail" onclick="changeImage(this.src)"> </div>
+              alt="Thumbnail" onclick="changeImage('mainImage1',this.src)">
+            <img src="/img/pd/ppn2_82.jpg" alt="Thumbnail" onclick="changeImage('mainImage1',this.src)">
+            <img src="/img/pd/ppn2_82.jpg" alt="Thumbnail" onclick="changeImage('mainImage1',this.src)"> </div>
           </div>
           <!-- Product Description -->
           <div class="product-description" id="productDetails">
@@ -284,15 +284,15 @@
         <div class="product-details">
           <!-- Product Images -->
           <div class="product-images" id="mainImage2">
-            <img id="mainImage"
+            <img class="mainImage"
               src="/img/pd/ppn_86.jpg"
               alt="Product Image">
             <div class="thumbnails">
               <img
                 src="/img/pd/ppn2_86.jpg"
-                alt="Thumbnail" onclick="changeImage(this.src)">
-              <img src="/img/pd/ppn3_86.jpg" alt="Thumbnail" onclick="changeImage(this.src)">
-              <img  src="/img/pd/ppn4_86.jpg" alt="Thumbnail" onclick="changeImage(this.src)">
+                alt="Thumbnail" onclick="changeImage('mainImage2',this.src)">
+              <img src="/img/pd/ppn3_86.jpg" alt="Thumbnail" onclick="changeImage('mainImage2',this.src)">
+              <img  src="/img/pd/ppn4_86.jpg" alt="Thumbnail" onclick="changeImage('mainImage2',this.src)">
             </div>
           </div>
           <!-- Product Description -->
@@ -321,7 +321,7 @@
             </ul>
           </div>
           <!-- Interest Button -->
-          <button class="interested-btn"  onclick="clickHandle('interested-btn1')" id="interested-btn1">Yes I am interested!</button>
+          <button class="interested-btn"  onclick="clickHandle('interested-btn2')" id="interested-btn2">Yes I am interested!</button>
           <!-- Dialog Box -->
           <dialog id="dialogBox">
             <p>Greetings, one and all!</p>
@@ -353,15 +353,15 @@
         <div class="product-details">
           <!-- Product Images -->
           <div class="product-images" id="mainImage3">
-            <img id="mainImage"
+            <img class="mainImage"
               src="https://5.imimg.com/data5/SELLER/Default/2024/8/446778175/RB/MR/PI/38167784/pp-milky-white-granule-500x500.jpg"
               alt="Product Image">
             <div class="thumbnails">
               <img
                 src="https://5.imimg.com/data5/SELLER/Default/2024/8/446209729/VF/LQ/II/38167784/natural-pp-1-500x500.jpeg"
-                alt="Thumbnail" onclick="changeImage(this.src)">
-              <img src="https://5.imimg.com/data5/SELLER/Default/2024/8/446209784/WP/AE/JN/38167784/natural-pp-1-500x500.jpg" alt="Thumbnail" onclick="changeImage(this.src)">
-              <img src="https://5.imimg.com/data5/SELLER/Default/2024/8/446209784/WP/AE/JN/38167784/natural-pp-1-500x500.jpg" alt="Thumbnail" onclick="changeImage(this.src)">
+                alt="Thumbnail" onclick="changeImage('mainImage3',this.src)">
+              <img src="https://5.imimg.com/data5/SELLER/Default/2024/8/446209784/WP/AE/JN/38167784/natural-pp-1-500x500.jpg" alt="Thumbnail" onclick="changeImage('mainImage3',this.src)">
+              <img src="https://5.imimg.com/data5/SELLER/Default/2024/8/446209784/WP/AE/JN/38167784/natural-pp-1-500x500.jpg" alt="Thumbnail" onclick="changeImage('mainImage3',this.src)">
             </div>
           </div>
           <!-- Product Description -->
@@ -430,15 +430,15 @@
         <div class="product-details">
           <!-- Product Images -->
           <div class="product-images" id="mainImage4">
-            <img id="mainImage"
+            <img class="mainImage"
               src="https://5.imimg.com/data5/SELLER/Default/2024/8/446215617/IH/EF/GR/38167784/pp-natural-reprocessed-granules-500x500.jpg"
               alt="Product Image">
             <div class="thumbnails">
               <img
                 src="https://5.imimg.com/data5/SELLER/Default/2024/8/446215645/MV/YE/RN/38167784/pp-natural-reprocessed-granules-500x500.jpg"
-                alt="Thumbnail" onclick="changeImage(this.src)">
-                <img src="https://5.imimg.com/data5/SELLER/Default/2024/8/446215647/FV/OK/TW/38167784/pp-natural-reprocessed-granules-500x500.jpg" alt="Thumbnail" onclick="changeImage(this.src)">
-                <img src="https://5.imimg.com/data5/SELLER/Default/2024/8/446215647/FV/OK/TW/38167784/pp-natural-reprocessed-granules-500x500.jpg" alt="Thumbnail" onclick="changeImage(this.src)">
+                alt="Thumbnail" onclick="changeImage('mainImage4',this.src)"/>
+                <img src="https://5.imimg.com/data5/SELLER/Default/2024/8/446215647/FV/OK/TW/38167784/pp-natural-reprocessed-granules-500x500.jpg" alt="Thumbnail" onclick="changeImage('mainImage4',this.src)"/>
+                <img src="https://5.imimg.com/data5/SELLER/Default/2024/8/446215647/FV/OK/TW/38167784/pp-natural-reprocessed-granules-500x500.jpg" alt="Thumbnail" onclick="changeImage('mainImage4',this.src)"/>
             </div>
           </div>
           <!-- Product Description -->
@@ -705,6 +705,15 @@
           statusMessage.style.color = "red";
         });
     });
+
+
+
+    function changeImage(mainImageId, newSrc) {
+    const mainImage = document.querySelector(`#${mainImageId} .mainImage`);
+    if (mainImage) {
+      mainImage.src = newSrc;
+    }
+  }
   </script>
 
 
